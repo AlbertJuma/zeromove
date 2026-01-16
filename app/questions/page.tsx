@@ -247,7 +247,7 @@ function ResourcesSelector({ onNext }: { onNext: (answer: Partial<Answer>) => vo
       </button>
       
       <div className="pt-6">
-        <Button onClick={handleContinue} variant="primary" disabled={selected.length === 0}>
+        <Button onClick={handleContinue} variant="primary">
           Continue
         </Button>
       </div>

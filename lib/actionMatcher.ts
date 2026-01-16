@@ -97,12 +97,10 @@ export function matchActions(answers: UserAnswers): MatchedActions {
   };
 
   // Select best action from each category
-  const selectBestAction = (actions: Action[]): Action => {
+  const selectBestAction = (actions: Action[], category: string): Action => {
     if (actions.length === 0) {
       // Fallback to any action from the category if filters are too strict
-      const categoryName = actions === immediateActions ? 'immediate' : 
-                           actions === shortTermActions ? 'short_term' : 'skill_building';
-      const fallbackActions = allActions.filter(a => a.category === categoryName);
+      const fallbackActions = allActions.filter(a => a.category === category);
       return fallbackActions[Math.floor(Math.random() * fallbackActions.length)];
     }
 
@@ -122,8 +120,8 @@ export function matchActions(answers: UserAnswers): MatchedActions {
   };
 
   return {
-    today: selectBestAction(immediateActions),
-    thisWeek: selectBestAction(shortTermActions),
-    skillToBuild: selectBestAction(skillBuildingActions),
+    today: selectBestAction(immediateActions, 'immediate'),
+    thisWeek: selectBestAction(shortTermActions, 'short_term'),
+    skillToBuild: selectBestAction(skillBuildingActions, 'skill_building'),
   };
 }
