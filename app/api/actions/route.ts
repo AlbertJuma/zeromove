@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
     const answers: UserAnswers = await request.json();
 
     // Validate the answers
-    if (!answers.housing || !answers.resources || !answers.timeAvailable || !answers.priority || !answers.energy) {
+    if (!answers.housing || answers.resources === undefined || !answers.timeAvailable || !answers.priority || !answers.energy) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
